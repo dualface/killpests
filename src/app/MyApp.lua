@@ -10,9 +10,10 @@ function MyApp:ctor()
 end
 
 function MyApp:run()
+    math.newrandomseed()
+
     cc.FileUtils:getInstance():addSearchPath("res/")
-    -- self:enterScene("MainScene")
-    self:enterScene("PlayScene")
+    self:enterScene("MainScene")
 end
 
 return MyApp

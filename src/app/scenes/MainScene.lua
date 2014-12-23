@@ -10,7 +10,6 @@ function MainScene:ctor()
 
     cc.ui.UIPushButton.new("img/play_button.png")
         :onButtonClicked(function()
-            math.newrandomseed()
             app:enterScene("PlayScene", nil, "Random", 1.0)
         end)
         :pos(display.cx, display.cy - 200)

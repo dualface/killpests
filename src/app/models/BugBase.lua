@@ -11,6 +11,7 @@ function BugBase:ctor()
     self.dist_ = 0
     self.distPosition_ = cc.p(0, 0)
     self.speed_ = 1
+    self.touchRange_ = 0
 end
 
 function BugBase:getPosition()
@@ -58,6 +59,12 @@ function BugBase:step()
     self.dist_ = self.dist_ - self.speed_
     self.position_ = self:calcPosition_(self.rotation_ + 180, self.dist_, self.distPosition_)
     return self
+end
+
+function BugBase:checkTouch(x, y)
+    local dx, dy = x - self.position_.x, y - self.position_.y
+    local offset = math.sqrt(dx * dx + dy * dy)
+    return offset <= self.touchRange_
 end
 
 function BugBase:calcPosition_(rotation, dist, distPosition)

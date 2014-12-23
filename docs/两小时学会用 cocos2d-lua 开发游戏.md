@@ -162,13 +162,14 @@ end)
 end)
 ```
 
-由于随机数问题，所以我们还要初始化一下随机数种子：
+由于随机数问题，所以我们在 app 初始化时还要初始化一下随机数种子：
 
 ```lua
-:onButtonClicked(function()
+function MyApp:run()
     math.newrandomseed()
-    app:enterScene("PlayScene", nil, "Random", 1.0)
-end)
+
+    ....
+end
 ```
 
 添加更多元素：
@@ -300,7 +301,6 @@ local BugAnt = import("..models.BugAnt")
 function PlayScene:ctor()
     ....
 
-    math.newrandomseed()
     local bug = BugAnt.new()
     bug:setInitPosition(cc.p(display.cx - 30, display.cy - 75), math.random(0, 360), 200)
 
@@ -412,7 +412,6 @@ end
 function PlayScene:ctor()
     ....
 
-    math.newrandomseed()
     local bug = BugAnt.new()
     bug:setInitPosition(Game.HOLE_POSITION, math.random(0, 360), 200)
 
@@ -433,28 +432,7 @@ end
 
 <br />
 
+现在我们需要在场景里添加多个虫子，并且让这些虫子动起来。
 
-BugBase 类
-
-
-    -   中场休息 15min
-
-    -   创建游戏场景
-
-        -   定义虫子对象：如何定义一个类
-        -   为虫子对象添加图片：虫子对象实现虫子的行为，添加图片后才能让玩家看到虫子
-        -   控制虫子的运动：为类添加方法、实现虫子的逻辑
-        -   定义游戏世界对象：游戏世界用于控制虫子的产生，并判断虫子是否跑到了屏幕外
-        -   定义玩家对象：定义玩家具有多少红心、以及如何扣除红心
-
-    -   创建游戏结束场景
-
--   回顾
-
-    -   场景、坐标系、sprite、node tree
-    -   UI 控件、事件
-    -   类、行为、为对象添加图片
-    -   对象间的交互
-
--   自由交流时间
+-   在 `Game` 对象里处理所有虫子的移动和图像
 
